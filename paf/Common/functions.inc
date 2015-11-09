@@ -1,8 +1,4 @@
 <?php
-	
-	function test() {
-		echo "testInc";
-	}
 
 	function is_login() {
 		if(the_user()) {
@@ -32,6 +28,11 @@
 	 * @return [type]            [description]
 	 */
 	function load_model($modelName) {
+
+		$_ModelPath = PAF_PATH.'/MVC/Model/_Model.inc';
+		if(!class_exists($_ModelPath)) {
+			require($_ModelPath);
+		}
 
 		$mdPath = PAF_PATH.'/MVC/MODEL/'.$modelName.'.inc';
 		if(file_exists($mdPath)) {

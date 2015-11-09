@@ -1,6 +1,6 @@
 <?php
 	
-	class UserModel {
+	class UserModel extends _Model {
 
 		var $user_id    = 0;
 		var $user_name  = '';

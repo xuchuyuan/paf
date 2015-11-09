@@ -38,7 +38,7 @@
 			if($result) {
 				$returnArray = [];
 				while(!$result->EOF) {
-					$returnArray = $result->fields;
+					$returnArray[] = $result->fields;
 					$result->MoveNext();
 				}
 				return $returnArray;
