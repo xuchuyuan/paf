@@ -39,7 +39,6 @@
 
 			$db  = load_db();
 			$ret = $db->execForArray($sql);
-			
 			if($ret && 1 == count($ret)) {
 				$ret 	  = $ret[0];
 				$var_keys = array_keys($vars);
@@ -48,8 +47,7 @@
 						$this->$key = $value;
 					}
 				}
-			}		
-
+			}
 		}
 	}
 ?>

@@ -52,8 +52,46 @@
 		}
 
 		//事务
-		function execForTrac($sql) {
+		function execForTrac($sqllist, $returntype) {
+			$type = ['none', 'string', 'array', 'int'];
+			if(!in_array($returntype, $type)) {
+				return false;
+			}
 
+			if(0 == count($sqllist)) {
+				return false;
+			}
+
+			//开启事务
+			$this->_db->BeginTrans();
+			$sqlindex = 0;
+			$ret = true;
+
+			foreach ($sqllist as $sql) {
+				if($sqlindex == (count($sqllist)-1)) {
+					if($returntype == 'none') {
+						$this->_db->Execute($sql);
+					}else if($returntype == 'array') {
+						$ret = $this->execForArray($sql);
+					}else if($returntype == 'int' || $returntype == 'string') {
+						$ret = $this->execForOne($sql);
+					}else {
+						$ret = $this->execForArray($sql);
+					}
+				}else {
+					$this->_db->Execute($sql);
+				}
+
+				$sqlindex++;
+			}
+
+			if($ret) {
+				$this->_db->CommitTrans();
+			}else {
+				$this->_db->RollbackTrans();
+			}
+
+			return $ret;
 		}
 	}
 ?>	

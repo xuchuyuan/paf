@@ -51,3 +51,13 @@
 		}
 		return new myDataBase();
 	}
+	
+
+	//加载虚拟类,解析xml
+	function load_class($xmlname) {
+		$classPath = PAF_PATH.'/Library/Class/myClass.php';
+		if(!class_exists($classPath)) {
+			require($classPath);			
+		}
+		return new myClass($xmlname);
+	}

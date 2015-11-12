@@ -22,6 +22,11 @@
 
 		}
 
+		function __get($var) {
+			
+			return load_class($var);
+		}
+
 		function setVar($name, $value) {
 
 			$this->_vars[$name] = $value;

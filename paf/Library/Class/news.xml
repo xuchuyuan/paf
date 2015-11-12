@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='utf8'?>
+
+<class>
+	<func>
+		<name>getUserList</name>
+		<sql><![CDATA[
+			select * from weibo
+			]]>			
+		</sql>
+		<description>获取用户列表</description>
+		<resultType>array</resultType>
+	</func>
+
+	<func>
+		<name>getUserDetail</name>
+		<sql><![CDATA[
+			select * from weibo where uid = #{0} and name = '#{1}'
+			]]>			
+		</sql>
+		<description>获取用户信息</description>
+		<resultType>array</resultType>
+	</func>
+</class>
